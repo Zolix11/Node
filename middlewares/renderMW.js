@@ -1,12 +1,10 @@
 /*
-*   Render the vires
+*   Render the views in the future
 */
 
 module.exports = function (objectrepository, viewName) {
-    return function (req, res) {
-        //res.render(viewName, res.tpl);
+    return function (req, res){
         console.log('render: ' + viewName);
-        res.end('Template: ' + viewName);
+        res.end('Template: '+ viewName);
     };
-
 };

@@ -4,9 +4,10 @@ var authMW = require('../middlewares/auth/authMW')
 var handleWrongUserNameMW  = require('../middlewares/auth/handleWrongUserNameMW')
 var checkPassMW = require('../middlewares/auth/checkPassMW')
 var setPassMW =require('../middlewares/auth/setPassMW')
+var logoutMW = require('../middlewares/auth/logoutMW')
 
 var getMyPlaylistsMW = require('../middlewares/playlist/getMyPlaylistsMW')
-var getMyPlaylistMW = require('../middlewares/playlist/getMyPlaylitsMW')
+var getMyPlaylistMW = require('../middlewares/playlist/getMyPlaylistMW')
 var savePlaylistMW = require('../middlewares/playlist/savePlaylistMW')
 var delPlaylistMW = require('../middlewares/playlist/delPlaylistMW')
 
@@ -17,10 +18,7 @@ var delSongMW = require('../middlewares/song/delSongMW')
 
 
 module.exports = function (app){
-    var objectRepository = {
-        taskModel : taskModel,
-        commentModel : commentModel
-    };
+    const objectRepository={};
 
     app.use('/',
         checkPassMW(objectRepository),
@@ -31,6 +29,11 @@ module.exports = function (app){
         setPassMW(objectRepository),
         renderMW(objectRepository,'forgotpassword'));
 
+    app.use('/logout',
+        authMW(objectRepository),
+        logoutMW(objectRepository),
+        renderMW(objectRepository,'index'));
+        
     app.use('/myplaylist',
         authMW(objectRepository),
         getMyPlaylistsMW(objectRepository),
