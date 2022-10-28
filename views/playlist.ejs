@@ -1,0 +1,54 @@
+<%- include('header') -%>
+  <h2 class="larger">Playlist: playlist</h2>
+  <h6 class="smaller">Megborolós Gyuri báttya koszovói rapper</h6>
+
+  <div style="text-align: right">
+
+    <a href="/myplaylist/:playlist/edit" class="btn btn-success align-self-end">Edit playlist details</a>
+
+    <div style="text-align: center">
+      <a href="/myplaylist" class="btn btn-primary">Return to playlists</a>
+    </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Artist</th>
+          <th scope="col">Name</th>
+          <th scope="col">Duration</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0 ; i<Object.keys(song).length ; i++){%>
+          <tr>
+            <td>
+              <%= i+1%>
+            </td>
+            <td>
+              <%= song[i].author %>
+            </td>
+            <td>
+              <%= song[i].title %>
+            </td>
+            <td>
+              <%= song[i].duration %>
+            </td>
+            <td>
+              <a href="/myplaylist/:playlistid/:songId/edit" class="btn btn-success">Edit</a>
+              <a href="/myplaylist/:playlistid/:songId/del" class="btn btn-danger">Remove</a>
+            </td>
+          </tr>
+          <% }; %>
+      </tbody>
+    </table>
+    <div style="text-align: center">
+      <a href="/myplaylist/:playlistid/newsong" class="btn btn-primary">Add song</a>
+    </div>
+  </div>
+  <div style="text-align: right">
+    <a href="/myplaylist/:playlist/del" class="btn btn-danger">Remove</a>
+  </div>
+  </div>
+  <%- include('footer') -%>

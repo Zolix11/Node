@@ -5,6 +5,8 @@
  module.exports= function(objectRepository){
 
     return function (req, res, next){
+        
+        res.locals.playlists=[{genre : 'Mulatos', numberOfsongs : 50, duration : 20 },{genre : 'Disco', numberOfsongs : 20, duration : 20 }]
         return next();
     }
 }

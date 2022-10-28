@@ -1,0 +1,42 @@
+<%- include('header') -%>
+  <div style="text-align: center">
+    <a href="/myplaylist/new" class="btn btn-primary">New playlist</a>
+  </div>
+  <div style="text-align: right">
+    <a href="/logout" class="btn btn-danger ">Log out</a>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Select playlist</th>
+        <th scope="col">#</th>
+        <th scope="col">Playlist Name</th>
+        <th scope="col">Number of songs</th>
+        <th scope="col">Playlist's time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i=0 ; i<Object.keys(playlists).length ; i++){%>
+        <tr>
+          <td>
+            <a href="/myplaylist/:playlist" class="btn btn-primary">Select</a>
+          </td>
+          <td>
+            <%= i+1%>
+          </td>
+          <td>
+            <%= playlists[i].genre %>
+          </td>
+          <td>
+            <%= playlists[i].numberOfsongs %>
+          </td>
+          <td>
+            <%= playlists[i].duration %>
+          </td>
+        </tr>
+
+        <% }; %>
+
+    </tbody>
+  </table>
+  <%- include('footer') -%>

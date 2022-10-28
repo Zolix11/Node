@@ -20,11 +20,7 @@ var delSongMW = require('../middlewares/song/delSongMW')
 module.exports = function (app){
     const objectRepository={};
 
-    app.use('/',
-        checkPassMW(objectRepository),
-        renderMW(objectRepository,'index'));
-
-    app.use('/forgotpassword ',
+    app.use('/forgotpassword',
         handleWrongUserNameMW(objectRepository),
         setPassMW(objectRepository),
         renderMW(objectRepository,'forgotpassword'));
@@ -33,11 +29,7 @@ module.exports = function (app){
         authMW(objectRepository),
         logoutMW(objectRepository),
         renderMW(objectRepository,'index'));
-        
-    app.use('/myplaylist',
-        authMW(objectRepository),
-        getMyPlaylistsMW(objectRepository),
-        renderMW(objectRepository,'myplaylistList'));
+    
 
     app.use('/myplaylist/new',
         authMW(objectRepository),
@@ -73,7 +65,7 @@ module.exports = function (app){
         getMyPlaylistMW(objectRepository),
         getSongMW(objectRepository),
         saveSongMW(objectRepository),
-        renderMW(objectRepository,'playlist'));
+        renderMW(objectRepository,'editsong'));
 
     app.get('/myplaylist/:playlistid/:songId/del',
         authMW(objectRepository),
@@ -82,5 +74,14 @@ module.exports = function (app){
         getSongMW(objectRepository),
         delSongMW(objectRepository),
         renderMW(objectRepository,'playlist'));
+
+    app.use('/myplaylist',
+        authMW(objectRepository),
+        getMyPlaylistsMW(objectRepository),
+        renderMW(objectRepository,'menu'));    
+
+    app.use('/',
+        checkPassMW(objectRepository),
+        renderMW(objectRepository,'index'));    
 
 }
