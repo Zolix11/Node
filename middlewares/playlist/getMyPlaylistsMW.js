@@ -2,11 +2,18 @@
  * Load all playlits for a user from the database
  * The result is saved to res.locals.playlists
  */
- module.exports= function(objectRepository){
+const requireOption = require("../requireOption");
+module.exports = function (objectRepository) {
+  const PlaylistModel = requireOption(objectRepository, "PlaylistModel");
 
-    return function (req, res, next){
-        
-        res.locals.playlists=[{genre : 'Mulatos', numberOfsongs : 50, duration : 20 },{genre : 'Disco', numberOfsongs : 20, duration : 20 }]
-        return next();
-    }
-}
+  return function (req, res, next) {
+    PlaylistModel.find({ _owneruser: req.session.userid }, (err, playlists) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.locals.playlists = playlists;
+      return next();
+    });
+  };
+};

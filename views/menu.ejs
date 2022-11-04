@@ -19,16 +19,16 @@
       <% for (let i=0 ; i<Object.keys(playlists).length ; i++){%>
         <tr>
           <td>
-            <a href="/myplaylist/:playlist" class="btn btn-primary">Select</a>
+            <a href="/myplaylist/<%= playlists[i]._id %>" class="btn btn-primary">Select</a>
           </td>
           <td>
             <%= i+1%>
           </td>
           <td>
-            <%= playlists[i].genre %>
+            <%= playlists[i].name %>
           </td>
           <td>
-            <%= playlists[i].numberOfsongs %>
+            <%= playlists[i].songs %>
           </td>
           <td>
             <%= playlists[i].duration %>

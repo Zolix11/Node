@@ -1,10 +1,14 @@
 <%- include('header') -%>
-  <h2 class="larger">Playlist: playlist</h2>
-  <h6 class="smaller">Megborolós Gyuri báttya koszovói rapper</h6>
+  <h2 class="larger">Playlist: <%= playlist.name%>
+  </h2>
+  <h6 class="smaller">
+    Description:
+    <%= playlist.description %>
+  </h6>
 
   <div style="text-align: right">
 
-    <a href="/myplaylist/:playlist/edit" class="btn btn-success align-self-end">Edit playlist details</a>
+    <a href="/myplaylist/<%= playlist._id %>/edit" class="btn btn-success align-self-end">Edit playlist details</a>
 
     <div style="text-align: center">
       <a href="/myplaylist" class="btn btn-primary">Return to playlists</a>
@@ -17,38 +21,39 @@
           <th scope="col">Artist</th>
           <th scope="col">Name</th>
           <th scope="col">Duration</th>
-          <th scope="col">Options</th>
+          <th scope="col">Options on a song</th>
         </tr>
       </thead>
       <tbody>
-        <% for (let i=0 ; i<Object.keys(song).length ; i++){%>
+        <% for (let i=0 ; i<Object.keys(songs).length ; i++){%>
           <tr>
             <td>
               <%= i+1%>
             </td>
             <td>
-              <%= song[i].author %>
+              <%= songs[i].artist %>
             </td>
             <td>
-              <%= song[i].title %>
+              <%= songs[i].title %>
             </td>
             <td>
-              <%= song[i].duration %>
+              <%= songs[i].duration %>
             </td>
             <td>
-              <a href="/myplaylist/:playlistid/:songId/edit" class="btn btn-success">Edit</a>
-              <a href="/myplaylist/:playlistid/:songId/del" class="btn btn-danger">Remove</a>
+              <a href="/myplaylist/<%= playlist._id %>/<%= songs[i]._id %>/edit" class="btn btn-success">Edit</a>
+              <a href="/myplaylist/<%= playlist._id %>/<%= songs[i]._id %>/del" class="btn btn-danger">Remove</a>
+
             </td>
           </tr>
           <% }; %>
       </tbody>
     </table>
     <div style="text-align: center">
-      <a href="/myplaylist/:playlistid/newsong" class="btn btn-primary">Add song</a>
+      <a href="/myplaylist/<%= playlist._id %>/newsong" class="btn btn-primary">Add song</a>
     </div>
   </div>
   <div style="text-align: right">
-    <a href="/myplaylist/:playlist/del" class="btn btn-danger">Remove</a>
+    <a href="/myplaylist/<%= playlist._id %>/del" class="btn btn-danger">Remove playlist: <%= playlist.name%></a>
   </div>
   </div>
   <%- include('footer') -%>

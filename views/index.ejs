@@ -1,26 +1,25 @@
 <%- include('header') -%>
-
   <div class="container">
 
     <div class="row">
       <div class="col"></div>
       <div class="col">
-        <form>
+        <form method="POST">
           <div class="mb-3">
-            <label for="Nickname" class="form-label">Nickname</label>
-            <input type="text" class="form-control" id="Nickname">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password">
           </div>
           <div class="mb-2">
-            <a href="/myplaylist" class="btn btn-primary">Login</a>
-            <a href="/forgotpassword" class="btn btn-secondary btn-light">Forgot password</a>
+            <input type="submit" class="btn btn-primary" value="Login" />
+            <a href="/forgotpassword" class="btn btn-light">Forgot password</a>
+            <a href="/createuser" class="btn btn-secondary">Create a user</a>
           </div>
         </form>
       </div>
       <div class="col"></div>
-    </div>
   </div>
   <%- include('footer') -%>

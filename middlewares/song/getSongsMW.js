@@ -2,10 +2,19 @@
  * Load songs from the database,
  * the result is saved to res.locals.songs
  */
+ const requireOption = require("../requireOption")
  module.exports= function(objectRepository){
 
-    return function (req, res, next){
-        res.locals.song=[{author : 'Korda György', title : 'Reptér', duration : 3 },{author : 'Azet', title : 'Lelele', duration : 3 }]
-        return next();
+     const SongModel = requireOption(objectRepository, 'SongModel')
+     
+     return function (req, res, next) {
+        
+        SongModel.find({_ownerplaylist: req.params.playlist},(err, songs)=>{
+                if(err || !songs){
+                    return next(err)
+                }
+                res.locals.songs = songs
+                return next();
+        })
     }
 }
