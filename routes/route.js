@@ -34,7 +34,6 @@ module.exports = function (app) {
 
   app.use(
     "/forgotpassword",
-    handleWrongUserNameMW(objectRepository),
     forgotuserpassword(objectRepository),
     renderMW(objectRepository, "createuserforgotpassword")
   );
