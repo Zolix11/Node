@@ -1,10 +1,10 @@
 const renderMW = require("../middlewares/renderMW");
 
 const authMW = require("../middlewares/auth/authMW");
-const handleWrongUserNameMW = require("../middlewares/auth/handleWrongUserNameMW");
 const checkPassMW = require("../middlewares/auth/checkPassMW");
 const createuserMW = require("../middlewares/auth/createuserMW");
 const logoutMW = require("../middlewares/auth/logoutMW");
+const forgotuserpassword = require("../middlewares/auth/forgotuserpassword");
 
 const getMyPlaylistsMW = require("../middlewares/playlist/getMyPlaylistsMW");
 const getMyPlaylistMW = require("../middlewares/playlist/getMyPlaylistMW");
@@ -19,7 +19,6 @@ const delSongMW = require("../middlewares/song/delSongMW");
 const PlaylistModel = require("../models/playlist");
 const SongModel = require("../models/song");
 const UserModel = require("..//models/user");
-const forgotuserpassword = require("../middlewares/auth/forgotuserpassword");
 module.exports = function (app) {
   const objectRepository = {
     PlaylistModel: PlaylistModel,

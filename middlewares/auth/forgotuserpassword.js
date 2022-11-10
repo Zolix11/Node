@@ -12,8 +12,12 @@ module.exports = function (objectRepository) {
     ) {
       return next();
     }
+
     UserModel.findOne({ username: req.body.username }, (err, result) => {
-      if (err || !result) {
+      if (err) {
+        return next(err);
+      } else if (!result) {
+        res.locals.error = "There is no user to change password for";
         return next(err);
       }
       result.password = req.body.password;

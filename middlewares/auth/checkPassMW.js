@@ -14,16 +14,27 @@ module.exports = function (objectRepository) {
       return next();
     }
 
+    if (req.body.username === "" && req.body.password === "") {
+      res.locals.error = "There is no username and password";
+      return next();
+    } else if (req.body.username === "") {
+      res.locals.error = "There is no username";
+      return next();
+    } else if (req.body.password === "") {
+      res.locals.error = "There is no password";
+      return next();
+    }
+
     UserModel.findOne({ username: req.body.username }, (err, result) => {
       if (err || !result) {
         return next(err);
       }
       if (result.password != req.body.password) {
+        res.locals.error = "Wrong password";
         return next();
       }
       req.session.userid = result._id;
       req.session.loggedin = true;
-      console.log(req.session);
       return res.redirect(`/myplaylist`);
     });
   };

@@ -11,7 +11,6 @@ module.exports = function (objectrepository) {
     ) {
       return res.redirect("/");
     }
-    //console.log(req.session.user);
-    next();
+    return next();
   };
 };

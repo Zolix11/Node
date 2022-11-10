@@ -19,4 +19,3 @@ const Playlist = db.model("Playlist", {
 });
 
 module.exports = Playlist;
-  
