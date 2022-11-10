@@ -16,8 +16,20 @@ module.exports = function (objectRepository) {
       return next();
     }
 
+    if (req.body.artist === "") {
+      res.locals.error = "There is no artist";
+      return next();
+    } else if (req.body.title === "") {
+      res.locals.error = "There is no title";
+      return next();
+    } else if (req.body.duration === "") {
+      res.locals.error = "There is no duration";
+      return next();
+    }
+
     if (Number.isNaN(parseFloat(req.body.duration))) {
-      return next(new Error("Perc számmal kell hogy megadva legyen!"));
+      res.locals.error = "Duration must be number";
+      return next();
     }
 
     if (typeof res.locals.song === "undefined") {
