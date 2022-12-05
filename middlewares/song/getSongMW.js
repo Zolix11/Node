@@ -12,7 +12,6 @@ module.exports = function (objectRepository) {
         return next(err);
       }
       res.locals.song = song;
-      console.log(res.locals);
       return next();
     });
   };

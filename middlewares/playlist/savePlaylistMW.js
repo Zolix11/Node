@@ -4,7 +4,6 @@
  * then redirrects to /myplaylists after the save/update happened
  */
 
-//TODO: USER BEKÖTÉS
 const requireOption = require("../requireOption");
 module.exports = function (objectRepository) {
   const PlaylistModel = requireOption(objectRepository, "PlaylistModel");

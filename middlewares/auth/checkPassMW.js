@@ -29,7 +29,7 @@ module.exports = function (objectRepository) {
       if (err || !result) {
         return next(err);
       }
-      if (result.password != req.body.password) {
+      if (result.password !== req.body.password) {
         res.locals.error = "Wrong password";
         return next();
       }
